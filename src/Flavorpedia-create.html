@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xml:lang>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Flavorpedia: Digital cookbook-create-a-recipe
+        </title>
+    </head>
+    <header>
+        <!--Have header links look like tabs-->
+        <a href="Flavorpedia-index.html">Home</a>
+        <a href="Flavorpedia-login.html" hidden="false">Login</a>
+        <a href="Flavorpedia-profile.html" hidden="true">Profile</a>
+        <a href="Flavorpedia-create.html" hidden="true">Create-a-Recipe</a>
+        <a href="Flavorpedia-advisor.html">Meal Advisor</a>
+    </header>
+    <body>
+        <div>
+            <h1>Create-a-Recipe</h1>
+            <form>
+                <label for="dish_name">Dish Name</label>
+                <input type="text" id="dish_name" name="dish_name" required>
+                <br>
+                <label for="dish_ingredients">Ingredients</label>
+                <ul>
+                    <input type="text" id="dish_ingredient" name="dish_ingredient" required>
+                    <p>add more</p><!--will need to be a link or something to allow user to add more ingredients-->
+                </ul>
+                <label for="dish_time_prep">Prep Time</label>
+                <input type="text" id="dish_time_prep" name="dish_time_prep">
+                <br>
+                <label for="dish_time_cook">Cook Time</label>
+                <input type="text" id="dish_time_cook" name="dish_time_cook">
+                <br>
+                <label for="dish_directions">Directions</label>
+                <textarea id="dish_directions" name="dish_directions" required></textarea>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </body>
+    <footer>
+        <p name="footer_txt">&copy; C3 Designs 2024</p>
+    </footer>
+</html>

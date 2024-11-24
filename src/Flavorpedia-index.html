@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xml:lang>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Flavorpedia:Digital cookbook-home</title>
+    </head>
+    <header>
+        <!--Have header links look like tabs-->
+        <a href="Flavorpedia-index.html">Home</a>
+        <a href="Flavorpedia-login.html" hidden="false">Login</a>
+        <a href="Flavorpedia-profile.html" hidden="true">Profile</a>
+        <a href="Flavorpedia-create.html">Create-a-Recipe</a>
+        <a href="Flavorpedia-advisor.html">Meal Advisor</a>
+    </header>
+    <body>
+        <div class="welcome">
+            <h1><b>Welcome to Flavorpedia!</b></h1>
+            <h3><i>Your digital cookbook and receipe saver</i></h3>
+        </div>
+        <br>
+        <div class="Feature">
+            <h2>Featured reciepes</h2>
+            <ul class="Showcase">
+                <!--Have collection of 5-20 featured recipes and select 5 at random to showcase-->
+                <!--Populate list with array that is created when home page is loaded. Array is filled by picking a random number between 
+                0 & 19 5 times with no duplicates. Those numbers will be the index of selected recipes.-->
+                <!--Display in revolving horizontal gallery-->
+                <li>Featured Recipe 1</li>
+                <li>Featured Recipe 2</li>
+                <li>Featured Recipe 3</li>
+                <li>Featured Recipe 4</li>
+                <li>Featured Recipe 5</li>
+            </ul>
+        </div>
+        <div class="Search">
+            <h3>What's for dinner?</h3>
+            <input type="text" placeholder="Find a recipe"><button type="submit">Search</button>
+            <table hidden="true">
+                <!--Create a table with 4 results per row until all results are shown-->
+                <th>Results</th>
+                <tr></tr>
+            </table>
+        </div>
+        <a href="Flavorpedia-advisor.html"><h3>Meal Advisor</h3></a>
+        <script>
+            const fetchRecipesFromDatabase = async () => {
+                try {
+                    const response = await fetch('https://your-database-endpoint/recipes');
+                    const recipes = await response.json();
+                    return recipes;
+                } catch (error) {
+                    console.error('Error fetching recipes:', error);
+                    return [];
+                }
+            };
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const getRandomRecipes = (recipes, num) => {
+                    const shuffled = recipes.sort(() => .5 - Math.random());
+                    return shuffled.slice(0, num);
+                };
+
+                const populateFeaturedRecipes = async () => {
+                    const recipes = await fetchRecipesFromDatabase();
+                    const featuredRecipes = getRandomRecipes(recipes, 5);
+
+                    const showcaseList = document.querySelector('.Showcase');
+                    showcaseList.innerHTML = '';
+
+                    featuredRecipes.forEach(recipe => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = recipe.name;
+                        showcaseList.appendChild(listItem);
+                    });
+                };
+
+                populateFeaturedRecipes();
+            });
+        </script>
+    </body>
+    <footer>
+        <p name="footer_txt">&copy; C3 Designs 2024</p>
+    </footer>
+</html>
